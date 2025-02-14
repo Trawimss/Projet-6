@@ -3,12 +3,11 @@ const mongoose = require('mongoose');
 const booksRoutes = require('./routes/books');
 const userRoutes = require('./routes/user');
 const path = require('path');
-const password = require('./utils/password')
-
+require("dotenv").config()
+const url = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASSWORD}@cluster0.d0p0a.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0`
+ 
 // Connexion à la base de données
-mongoose.connect(`mongodb+srv://tristancharrin5:${password}@cluster0.d0p0a.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0`,
-  { useNewUrlParser: true,
-    useUnifiedTopology: true })
+mongoose.connect(url)
   .then(() => console.log('Connexion à MongoDB réussie !'))
   .catch(() => console.log('Connexion à MongoDB échouée !'));
 
